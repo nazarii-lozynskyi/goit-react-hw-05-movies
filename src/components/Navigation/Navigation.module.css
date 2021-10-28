@@ -1,0 +1,38 @@
+.List {
+  display: flex;
+}
+
+.Item {
+  list-style: none;
+}
+
+.Item:not(:last-child) {
+  margin-right: 10px;
+}
+
+.Link {
+  cursor: pointer;
+
+  display: inline-block;
+  text-decoration: none;
+
+  padding: 12px;
+
+  color: #fff;
+
+  transition: 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.Link:hover {
+  color: black;
+}
+
+.ActiveLink {
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 5px;
+
+  color: rgb(0, 0, 0);
+
+  transform: scale(1.1);
+}
