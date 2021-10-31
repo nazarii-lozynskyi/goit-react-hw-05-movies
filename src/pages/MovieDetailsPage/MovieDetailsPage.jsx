@@ -7,9 +7,12 @@ import {
   Route,
 } from 'react-router-dom';
 
+import Button from '../../components/Button';
 import PageHeading from '../../components/PageHeading';
 import Cast from '../../components/Cast';
 import Reviews from '../../components/Reviews';
+
+import ImageNotFound from '../../images/image_not_found.jpg';
 
 import { Card, ListGroup, Container } from 'react-bootstrap';
 
@@ -32,9 +35,22 @@ function MovieDetailsPage() {
       .then(result => setMovie(result))
       .catch(err => console.warn(err));
   }, [URL]);
+
+  function goBack() {
+    const valueURL = history.location.pathname;
+
+    if (valueURL.includes('cast') || valueURL.includes('reviews')) {
+      history.go(-1);
+    }
+
+    history.goBack();
+  }
+
   return (
     <section className={styles.Section}>
       <Container>
+        <Button onClick={goBack}>&#10094; go back</Button>
+
         <PageHeading text={movie.title} />
 
         <Card className="bg-dark text-white">
@@ -43,7 +59,7 @@ function MovieDetailsPage() {
             src={
               movie.backdrop_path
                 ? `https://www.themoviedb.org/t/p/original${movie.backdrop_path}`
-                : ''
+                : ImageNotFound
             }
             alt={movie.title}
           />
