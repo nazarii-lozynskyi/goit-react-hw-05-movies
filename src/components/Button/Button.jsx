@@ -3,7 +3,7 @@ import styles from './Button.module.scss';
 
 function Button({ onClick, children }) {
   return (
-    <button type="button" className={styles.Button} onClick={onClick}>
+    <button type="button" className={styles.gradientButton} onClick={onClick}>
       {children}
     </button>
   );
