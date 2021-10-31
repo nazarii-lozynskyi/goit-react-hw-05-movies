@@ -1,7 +1,5 @@
 import { NavLink } from 'react-router-dom';
 
-import { Nav } from 'react-bootstrap';
-
 import styles from './Navigation.module.css';
 
 const Navigation = () => (
@@ -9,10 +7,10 @@ const Navigation = () => (
     <ul className={styles.List}>
       <li className={styles.Item}>
         <NavLink
-          activeClassName={styles.ActiveLink}
-          className={styles.Link}
-          to="/"
           exact
+          to="/"
+          className={styles.Link}
+          activeClassName={styles.ActiveLink}
         >
           Home
         </NavLink>
@@ -20,9 +18,9 @@ const Navigation = () => (
 
       <li className={styles.Item}>
         <NavLink
-          activeClassName={styles.ActiveLink}
-          className={styles.Link}
           to="/movies"
+          className={styles.Link}
+          activeClassName={styles.ActiveLink}
         >
           Movies
         </NavLink>
