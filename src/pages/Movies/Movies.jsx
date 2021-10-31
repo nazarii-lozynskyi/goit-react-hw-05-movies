@@ -5,7 +5,11 @@ import PageHeading from '../../components/PageHeading';
 import SearchMovies from '../../components/SearchMovies';
 import NotFound from '../../components/NotFound';
 
-import styles from './Movies';
+import ImageNotFound from '../../images/image_not_found.jpg';
+
+import { Card, Container } from 'react-bootstrap';
+
+import styles from './Movies.module.css';
 
 const API_KEY = 'ab110991d3be565bd4f323a235f186b7';
 const BASE_URL = 'https://api.themoviedb.org/3';
@@ -18,6 +22,17 @@ function Movies() {
   const [movies, setMovies] = useState(null);
 
   const URL = `${BASE_URL}/search/movie?api_key=${API_KEY}&l&query=${query}&include_adult=false`;
+
+  useEffect(() => {
+    const queryValue = new URLSearchParams(location.search).get('query');
+
+    if (queryValue === null) {
+      return;
+    }
+
+    setQuery(queryValue);
+  }, [location.search]);
+
   useEffect(() => {
     if (query === '') {
       return;
@@ -39,24 +54,39 @@ function Movies() {
       <PageHeading text="Search movie"></PageHeading>
 
       <SearchMovies onSubmit={changeSearchValue} />
-
-      {movies && (
-        <ul>
-          {movies.length ? (
-            movies.map(movie => {
-              return (
-                <li key={movie.id} className={styles.item}>
-                  <Link to={`${url}/${movie.id}`} className={styles.link}>
-                    {movie.title}
-                  </Link>
-                </li>
-              );
-            })
-          ) : (
-            <NotFound value={query} />
-          )}
-        </ul>
-      )}
+      <Container>
+        {movies && (
+          <ul className={styles.List}>
+            {movies.length ? (
+              movies.map(movie => {
+                return (
+                  <li key={movie.id} className={styles.Item}>
+                    <Card style={{ width: '18rem' }}>
+                      <Link to={`${url}/${movie.id}`} className={styles.Link}>
+                        <Card.Img
+                          variant="top"
+                          src={
+                            movie.poster_path
+                              ? `https://www.themoviedb.org/t/p/w500${movie.poster_path}`
+                              : ImageNotFound
+                          }
+                        />
+                      </Link>
+                      <Card.Body>
+                        <Link to={`${url}/${movie.id}`} className={styles.Link}>
+                          <Card.Title>{movie.title}</Card.Title>
+                        </Link>
+                      </Card.Body>
+                    </Card>
+                  </li>
+                );
+              })
+            ) : (
+              <NotFound value={query} />
+            )}
+          </ul>
+        )}
+      </Container>
     </section>
   );
 }
