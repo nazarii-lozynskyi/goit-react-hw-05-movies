@@ -19,8 +19,7 @@ function SearchMovies({ onSubmit }) {
     }
 
     setValue(queryValue);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [location.search]);
 
   const handleChange = e => {
     setValue(e.currentTarget.value);
