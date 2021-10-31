@@ -2,3 +2,27 @@
   padding-top: 20px;
   padding-bottom: 40px;
 }
+
+.AdditionalInformationContainer {
+  margin-top: 30px;
+}
+
+.List {
+  display: flex;
+}
+
+.Item {
+  list-style: none;
+}
+
+.Item:not(:last-child) {
+  margin-right: 10px;
+}
+
+.Link {
+  text-decoration: none;
+}
+
+.Img {
+  filter: grayscale(92%) blur(2px);
+}
