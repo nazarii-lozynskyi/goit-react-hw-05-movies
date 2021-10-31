@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link, useRouteMatch } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import PageHeading from '../../components/PageHeading';
 
@@ -12,8 +12,6 @@ const BASE_URL = 'https://api.themoviedb.org/3';
 const URL = `${BASE_URL}/trending/movie/day?api_key=${API_KEY}`;
 
 function HomePage() {
-  const { url } = useRouteMatch();
-
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
