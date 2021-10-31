@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router';
 import PropTypes from 'prop-types';
-import { ImSearch } from 'react-icons/im';
 
 import { InputGroup, Button, FormControl } from 'react-bootstrap';
 
