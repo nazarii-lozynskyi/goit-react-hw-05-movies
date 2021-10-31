@@ -1,0 +1,10 @@
+.List {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.Item {
+  list-style: none;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
