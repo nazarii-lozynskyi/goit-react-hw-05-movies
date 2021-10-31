@@ -1,0 +1,17 @@
+.Author {
+  color: darkblue;
+
+  font-size: large;
+}
+
+.AuthorNickname {
+  color: red;
+
+  font-style: oblique;
+
+  font-weight: 800;
+}
+
+.Content {
+  text-align: justify;
+}
