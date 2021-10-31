@@ -19,7 +19,7 @@ function Cast({ movieId }) {
       .then(response => response.json())
       .then(result => setCast(result.cast))
       .catch(err => console.warn(err));
-  }, []);
+  }, [URL]);
 
   return (
     <Container>
