@@ -14,9 +14,7 @@ $borderWidth: 5px;
     border-image-slice: 1;
 }
 
-.gradient-button {
-    position: absolute;
-    z-index: 1;
+.gradientButton {
     display: block;
     top: calc(50% - 2.5rem - 5px);
     left: calc(50% - 6rem - 5px);
