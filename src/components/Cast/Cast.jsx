@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 
 import { Card, Container } from 'react-bootstrap';
 
+import ImageNotFound from '../../images/image_not_found.jpg';
+
 import styles from './Cast.module.css';
 
 const API_KEY = 'ab110991d3be565bd4f323a235f186b7';
@@ -31,7 +33,7 @@ function Cast({ movieId }) {
                   src={
                     actor.profile_path
                       ? `https://www.themoviedb.org/t/p/w500/${actor.profile_path}`
-                      : ''
+                      : ImageNotFound
                   }
                   alt={actor.name}
                 />
