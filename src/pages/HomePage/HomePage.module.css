@@ -1,0 +1,17 @@
+.List {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.Item {
+  margin-bottom: 10px;
+  list-style: none;
+}
+
+.Item:not(:nth-child(6)) {
+  margin-right: 10px;
+}
+
+.Item:not(:nth-child(12)) {
+  margin-right: 10px;
+}
