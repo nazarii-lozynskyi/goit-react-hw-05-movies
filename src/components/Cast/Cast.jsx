@@ -5,6 +5,8 @@ import { Card, Container } from 'react-bootstrap';
 
 import ImageNotFound from '../../images/image_not_found.jpg';
 
+import Flip from 'react-reveal/Flip';
+
 import styles from './Cast.module.css';
 
 const API_KEY = 'ab110991d3be565bd4f323a235f186b7';
@@ -26,23 +28,25 @@ function Cast({ movieId }) {
       <ul className={styles.List}>
         {cast.map(actor => {
           return (
-            <li key={actor.id} className={styles.Item}>
-              <Card style={{ width: '14rem' }}>
-                <Card.Img
-                  variant="top"
-                  src={
-                    actor.profile_path
-                      ? `https://www.themoviedb.org/t/p/w500/${actor.profile_path}`
-                      : ImageNotFound
-                  }
-                  alt={actor.name}
-                />
-                <Card.Body>
-                  <Card.Title>{actor.name}</Card.Title>
-                  <Card.Text>Character: {actor.character}</Card.Text>
-                </Card.Body>
-              </Card>
-            </li>
+            <Flip bottom cascade>
+              <li key={actor.id} className={styles.Item}>
+                <Card style={{ width: '14rem' }}>
+                  <Card.Img
+                    variant="top"
+                    src={
+                      actor.profile_path
+                        ? `https://www.themoviedb.org/t/p/w500/${actor.profile_path}`
+                        : ImageNotFound
+                    }
+                    alt={actor.name}
+                  />
+                  <Card.Body>
+                    <Card.Title>{actor.name}</Card.Title>
+                    <Card.Text>Character: {actor.character}</Card.Text>
+                  </Card.Body>
+                </Card>
+              </li>
+            </Flip>
           );
         })}
       </ul>
