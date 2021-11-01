@@ -1,4 +1,4 @@
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, useLocation } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
 
 import Loader from 'react-loader-spinner';
@@ -12,6 +12,8 @@ import AppBar from './components/AppBar';
 // import Movies from './pages/Movies';
 // import MovieDetailsPage from './pages/MovieDetailsPage';
 import NotFoundPage from './pages/NotFoundPage';
+
+import { useTransition, animated } from 'react-spring';
 
 import './App.css';
 
@@ -28,41 +30,62 @@ const MovieDetailsPage = lazy(() =>
 );
 
 function App() {
+  const location = useLocation();
+  const transitions = useTransition(location, {
+    from: { opacity: 0, transform: 'translateX(100%)' },
+    enter: { opacity: 1, transform: 'translateX(0%)' },
+    leave: { opacity: 0, transform: 'translateX(-100%)' },
+  });
+
   return (
-    <Container>
+    <>
       <AppBar />
+      <Container>
+        <Suspense
+          fallback={
+            <Loader
+              type="ThreeDots"
+              color="#ff6b08"
+              height={100}
+              width={100}
+              timeout={3000}
+              className="Loader"
+            />
+          }
+        >
+          <main
+            style={{
+              position: 'relative',
+            }}
+          >
+            {transitions((props, item) => (
+              <animated.div style={props}>
+                <div style={{ position: 'absolute', width: '100%' }}>
+                  <Switch location={item}>
+                    <Route path="/" exact>
+                      <HomePage />
+                    </Route>
 
-      <Suspense
-        fallback={
-          <Loader
-            type="ThreeDots"
-            color="#ff6b08"
-            height={100}
-            width={100}
-            timeout={3000}
-            className="Loader"
-          />
-        }
-      >
-        <Switch>
-          <Route path="/" exact>
-            <HomePage />
-          </Route>
+                    <Route path="/movies" exact>
+                      <Movies />
+                    </Route>
 
-          <Route path="/movies" exact>
-            <Movies />
-          </Route>
+                    <Route path="/movies/:movieId">
+                      <MovieDetailsPage />
+                    </Route>
 
-          <Route path="/movies/:movieId">
-            <MovieDetailsPage />
-          </Route>
-
-          <Route>
-            <NotFoundPage />
-          </Route>
-        </Switch>
-      </Suspense>
-    </Container>
+                    <Route>
+                      <NotFoundPage />
+                    </Route>
+                  </Switch>
+                </div>
+              </animated.div>
+            ))}
+          </main>
+        </Suspense>
+      </Container>
+      ;
+    </>
   );
 }
 
