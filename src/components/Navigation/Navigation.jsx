@@ -1,5 +1,7 @@
 import { NavLink } from 'react-router-dom';
 
+import Zoom from 'react-reveal/Zoom';
+
 import styles from './Navigation.module.css';
 
 const Navigation = () => (
@@ -12,7 +14,9 @@ const Navigation = () => (
           className={styles.Link}
           activeClassName={styles.ActiveLink}
         >
-          Home
+          <Zoom right cascade>
+            Home
+          </Zoom>
         </NavLink>
       </li>
 
@@ -22,7 +26,9 @@ const Navigation = () => (
           className={styles.Link}
           activeClassName={styles.ActiveLink}
         >
-          Movies
+          <Zoom right cascade>
+            Movies
+          </Zoom>
         </NavLink>
       </li>
     </ul>
