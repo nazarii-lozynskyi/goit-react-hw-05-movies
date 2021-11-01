@@ -1,5 +1,9 @@
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+
+import LightSpeed from 'react-reveal/LightSpeed';
+import Bounce from 'react-reveal/Bounce';
+
 import styles from './Reviews.module.css';
 
 const API_KEY = 'ab110991d3be565bd4f323a235f186b7';
@@ -25,15 +29,27 @@ function Reviews({ movieId }) {
             <li key={review.id}>
               <p className={styles.Author}>
                 Author:{' '}
-                <span className={styles.AuthorNickname}>{review.author}</span>
+                <span className={styles.AuthorNickname}>
+                  <Bounce left cascade>
+                    {review.author}
+                  </Bounce>
+                </span>
               </p>
-              <p className={styles.Content}>{review.content}</p>
+
+              <p className={styles.Content}>
+                <LightSpeed left cascade>
+                  {review.content}
+                </LightSpeed>
+              </p>
+
               <br />
             </li>
           );
         })
       ) : (
-        <p>We don't have any reviews for this movie</p>
+        <LightSpeed left cascade>
+          <p>We don't have any reviews for this movie</p>
+        </LightSpeed>
       )}
     </ul>
   );
