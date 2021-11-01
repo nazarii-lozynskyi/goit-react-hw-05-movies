@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router';
 import PropTypes from 'prop-types';
 
-import { InputGroup, Button, FormControl } from 'react-bootstrap';
+import { InputGroup, Button, FormControl, Container } from 'react-bootstrap';
 
 import styles from './SearchMovies.module.css';
 
@@ -30,19 +30,21 @@ function SearchMovies({ onSubmit }) {
     onSubmit(value.trim().toLowerCase());
   };
   return (
-    <form onSubmit={handleSubmit}>
-      <InputGroup className="mb-3">
-        <FormControl
-          placeholder="Search movies ..."
-          aria-label="Search movies"
-          aria-describedby="basic-addon2"
-          onChange={handleChange}
-        />
-        <Button variant="outline-secondary" id="button-addon2">
-          Search
-        </Button>
-      </InputGroup>
-    </form>
+    <Container>
+      <form onSubmit={handleSubmit}>
+        <InputGroup className="mb-3">
+          <FormControl
+            placeholder="Search movies ..."
+            aria-label="Search movies"
+            aria-describedby="basic-addon2"
+            onChange={handleChange}
+          />
+          <Button variant="outline-secondary" id="button-addon2">
+            Search
+          </Button>
+        </InputGroup>
+      </form>
+    </Container>
   );
 }
 
