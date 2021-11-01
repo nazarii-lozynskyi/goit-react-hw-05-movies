@@ -5,6 +5,8 @@ import PageHeading from '../../components/PageHeading';
 
 import { Card, Button, Container } from 'react-bootstrap';
 
+import Zoom from 'react-reveal/Zoom';
+
 import styles from './HomePage.module.css';
 
 const API_KEY = 'ab110991d3be565bd4f323a235f186b7';
@@ -28,21 +30,23 @@ function HomePage() {
         <ul className={styles.List}>
           {movies.map(movie => {
             return (
-              <li key={movie.id} className={styles.Item}>
-                <Card style={{ width: '14rem' }}>
-                  <Link to={`movies/${movie.id}`} className={styles.Link}>
-                    <Card.Img
-                      variant="top"
-                      src={`https://www.themoviedb.org/t/p/w500${movie.poster_path}`}
-                    />
-                  </Link>
-                  <Card.Body>
+              <Zoom>
+                <li key={movie.id} className={styles.Item}>
+                  <Card style={{ width: '14rem' }}>
                     <Link to={`movies/${movie.id}`} className={styles.Link}>
-                      <Button variant="primary">Details</Button>
+                      <Card.Img
+                        variant="top"
+                        src={`https://www.themoviedb.org/t/p/w500${movie.poster_path}`}
+                      />
                     </Link>
-                  </Card.Body>
-                </Card>
-              </li>
+                    <Card.Body>
+                      <Link to={`movies/${movie.id}`} className={styles.Link}>
+                        <Button variant="primary">Details</Button>
+                      </Link>
+                    </Card.Body>
+                  </Card>
+                </li>
+              </Zoom>
             );
           })}
         </ul>
