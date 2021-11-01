@@ -9,6 +9,8 @@ import ImageNotFound from '../../images/image_not_found.jpg';
 
 import { Card, Container } from 'react-bootstrap';
 
+import Roll from 'react-reveal/Roll';
+
 import styles from './Movies.module.css';
 
 const API_KEY = 'ab110991d3be565bd4f323a235f186b7';
@@ -60,25 +62,30 @@ function Movies() {
             {movies.length ? (
               movies.map(movie => {
                 return (
-                  <li key={movie.id} className={styles.Item}>
-                    <Card style={{ width: '18rem' }}>
-                      <Link to={`${url}/${movie.id}`} className={styles.Link}>
-                        <Card.Img
-                          variant="top"
-                          src={
-                            movie.poster_path
-                              ? `https://www.themoviedb.org/t/p/w500${movie.poster_path}`
-                              : ImageNotFound
-                          }
-                        />
-                      </Link>
-                      <Card.Body>
+                  <Roll right cascade>
+                    <li key={movie.id} className={styles.Item}>
+                      <Card style={{ width: '18rem' }}>
                         <Link to={`${url}/${movie.id}`} className={styles.Link}>
-                          <Card.Title>{movie.title}</Card.Title>
+                          <Card.Img
+                            variant="top"
+                            src={
+                              movie.poster_path
+                                ? `https://www.themoviedb.org/t/p/w500${movie.poster_path}`
+                                : ImageNotFound
+                            }
+                          />
                         </Link>
-                      </Card.Body>
-                    </Card>
-                  </li>
+                        <Card.Body>
+                          <Link
+                            to={`${url}/${movie.id}`}
+                            className={styles.Link}
+                          >
+                            <Card.Title>{movie.title}</Card.Title>
+                          </Link>
+                        </Card.Body>
+                      </Card>
+                    </li>
+                  </Roll>
                 );
               })
             ) : (
